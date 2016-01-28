@@ -7,13 +7,13 @@ namespace Garage2._0.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class removeledigP : IMigrationMetadata
+    public sealed partial class WheelCountRange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(removeledigP));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(WheelCountRange));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601211458420_remove ledigP"; }
+            get { return "201601281427047_WheelCountRange"; }
         }
         
         string IMigrationMetadata.Source

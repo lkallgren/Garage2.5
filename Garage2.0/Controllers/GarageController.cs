@@ -15,7 +15,7 @@ namespace Garage2._0.Controllers
         static int garageSize = 16;
         public int TotalFordon()
         {
-            return db.Vehicles.Count(i => i.Id != null);
+            return db.Vehicles.Count(i => i.VehicleId != null);
         }
 
         public int NextFreeLot()
@@ -116,7 +116,7 @@ namespace Garage2._0.Controllers
             switch (sortOrder)
             {
                 case "Type_desc":
-                    vehicle = vehicle.OrderByDescending(v => v.Type);
+                    vehicle = vehicle.OrderByDescending(v => v.ParkingLot);
                     break;
                 case "ParkTime":
                     vehicle = vehicle.OrderBy(v => v.ParkTime);
@@ -125,7 +125,7 @@ namespace Garage2._0.Controllers
                     vehicle = vehicle.OrderByDescending(v => v.ParkTime);
                     break;
                 default:
-                    vehicle = vehicle.OrderBy(v => v.Type);
+                    vehicle = vehicle.OrderBy(v => v.ParkingLot);
                     break;
             }
             ViewBag.FreeSpaces = TotalPlatser();

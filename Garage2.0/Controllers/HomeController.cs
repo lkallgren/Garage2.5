@@ -20,13 +20,13 @@ namespace Garage2._0.Controllers
         {
             //var dataList = new List<Object>();
 
-            IQueryable<StatisticsViewModel> data = from vehicle in db.Vehicles
-                                                   group vehicle by vehicle.Type into vehicleGroup 
-                                                   select new StatisticsViewModel()
-                                                   {
-                                                       Type = vehicleGroup.Key,
-                                                       TypeCount = vehicleGroup.Count(),
-                                                   };
+            //IQueryable<StatisticsViewModel> data = from vehicle in db.Vehicles
+            //                                       group vehicle by vehicle.Type into vehicleGroup 
+            //                                       select new StatisticsViewModel()
+            //                                       {
+            //                                           Type = vehicleGroup.Key,
+            //                                           TypeCount = vehicleGroup.Count(),
+            //                                       };
 
             //dataList.Add(data.ToList());
 
@@ -40,7 +40,7 @@ namespace Garage2._0.Controllers
             //dataList.Add(data2.ToList());
             //return View(data.ToList().Union(data2.ToList()));
 
-            return View(data);
+            return View();
         }
 
         public ActionResult Contact()

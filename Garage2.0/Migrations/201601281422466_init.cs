@@ -3,10 +3,50 @@ namespace Garage2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Members",
+                c => new
+                    {
+                        MemberId = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                    })
+                .PrimaryKey(t => t.MemberId);
+            
+            CreateTable(
+                "dbo.Vehicles",
+                c => new
+                    {
+                        VehicleId = c.Int(nullable: false, identity: true),
+                        VehicleTypeId = c.Int(nullable: false),
+                        RegistrationNumber = c.String(nullable: false),
+                        Colour = c.String(),
+                        Brand = c.String(),
+                        Model = c.String(),
+                        WheelCount = c.Int(nullable: false),
+                        ParkTime = c.DateTime(nullable: false),
+                        ParkingLot = c.Int(nullable: false),
+                        Member_MemberId = c.Int(),
+                    })
+                .PrimaryKey(t => t.VehicleId)
+                .ForeignKey("dbo.VehicleTypes", t => t.VehicleTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Members", t => t.Member_MemberId)
+                .Index(t => t.VehicleTypeId)
+                .Index(t => t.Member_MemberId);
+            
+            CreateTable(
+                "dbo.VehicleTypes",
+                c => new
+                    {
+                        VehicleTypeId = c.Int(nullable: false, identity: true),
+                        TypeName = c.String(),
+                    })
+                .PrimaryKey(t => t.VehicleTypeId);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -75,21 +115,6 @@ namespace Garage2._0.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.Vehicles",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Type = c.String(),
-                        RegistrationNumber = c.String(),
-                        Colour = c.String(),
-                        Brand = c.String(),
-                        Model = c.String(),
-                        WheelCount = c.Int(nullable: false),
-                        ParkTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
@@ -98,18 +123,24 @@ namespace Garage2._0.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Vehicles", "Member_MemberId", "dbo.Members");
+            DropForeignKey("dbo.Vehicles", "VehicleTypeId", "dbo.VehicleTypes");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropTable("dbo.Vehicles");
+            DropIndex("dbo.Vehicles", new[] { "Member_MemberId" });
+            DropIndex("dbo.Vehicles", new[] { "VehicleTypeId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.VehicleTypes");
+            DropTable("dbo.Vehicles");
+            DropTable("dbo.Members");
         }
     }
 }
