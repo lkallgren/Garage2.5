@@ -1,0 +1,57 @@
+﻿@model Garage2._0.Models.Vehicle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@functions{
+    public int TimeDiff(DateTime out_time, DateTime in_time)
+    {
+        TimeSpan diffTime = out_time - in_time;
+        return Convert.ToInt32(diffTime.TotalMinutes);
+    }
+}
+
+<h2>Delete</h2>
+
+<h3>Är du säker på att du vill hämta ut din/ditt @Html.DisplayFor(model => model.Type) med registreringsnummer: @Html.DisplayFor(model => model.RegistrationNumber) ?</h3>
+@Html.ActionLink("Fortsätt parkera", "Index")
+<div>
+    <hr />
+
+    <h3>Tiden nu: @DateTime.Now.ToString() </h3>
+    <h3>Parkerad: @Html.DisplayFor(model => model.ParkTime) </h3>
+    <h3>Parkeringstid: @TimeDiff(DateTime.Now, Model.ParkTime)</h3>
+
+    @*@using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Hämta ut fordon" class="btn btn-default" /> | <input type="submit" value="Hämta ut fordon, med kvitto" class="btn btn-default" />
+            @Html.ActionLink("Back to List", "Kvitto")
+            <input type="button" title="Delete" value="Hämta ut fordon" onclick="location.href='@Url.Action("Delete","Garage")'" />
+            <input type="button" title="Index" value="Hämta ut fordon + kvitto" onclick="location.href='@Url.Action("Kvitto","Garage")'" />
+
+        </div>
+        }*@
+
+
+    <div class="form-actions no-color">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+    <input type="submit" value="Hämta ut fordon" class="btn btn-default" style="float:left" />
+        }
+        
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="show" value="receipt" />
+            <input type="submit" value="Hämta ut fordon, med kvitto" class="btn btn-default" style="margin-left:10px" />
+        }
+
+    </div>
+
+</div>
