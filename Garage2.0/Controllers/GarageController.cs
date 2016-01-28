@@ -174,6 +174,7 @@ namespace Garage2._0.Controllers
         // GET: Garage/Create
         public ActionResult Create()
         {
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "TypeName");
             return View();
         }
 
@@ -182,7 +183,7 @@ namespace Garage2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "VehicleId,VehicleTypeId,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
         {
             
             if ((ModelState.IsValid) && (NextFreeLot() != 0))
@@ -199,6 +200,9 @@ namespace Garage2._0.Controllers
             }
             else
             ViewBag.Full = "Tyvärr garaget är fullt";
+
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "TypeName", vehicle.VehicleTypeId);
+
             return View(vehicle);
         }
 
@@ -214,6 +218,7 @@ namespace Garage2._0.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "TypeName", vehicle.VehicleTypeId);
             return View(vehicle);
         }
 
@@ -222,7 +227,7 @@ namespace Garage2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "VehicleId,VehicleTypeId,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -230,6 +235,7 @@ namespace Garage2._0.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "TypeName", vehicle.VehicleTypeId);
             return View(vehicle);
         }
 
