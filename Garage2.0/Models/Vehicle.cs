@@ -24,6 +24,8 @@ namespace Garage2._0.Models
         public int ParkingLot { get; set; }
 
         public virtual VehicleType Type { get; set; }
+        public virtual Member Member { get; set; }
+
     }
 
     //public enum Type 

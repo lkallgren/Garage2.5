@@ -4,7 +4,7 @@
     ViewBag.Title = "DetailsList";
 }
 
-
+<h2>Detaljlista över parkerade fordon</h2>
 
 <p>
     @Html.ActionLink("Parkera fordon", "Create")
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Type.TypeName)
+            @Html.ActionLink("TypeName", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RegistrationNumber)
@@ -30,11 +30,15 @@
             @Html.DisplayNameFor(model => model.WheelCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkTime)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ParkingLot)
         </th>
+        <th>
+            @Html.ActionLink("ParkTime", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Medlem", "Index", new { sortOrder = ViewBag.MemberSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
         <th></th>
     </tr>
 
@@ -59,10 +63,13 @@
             @Html.DisplayFor(modelItem => item.WheelCount)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ParkingLot)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ParkTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ParkingLot)
+            @Html.DisplayFor(modelItem => item.Member.FirstName) @Html.DisplayFor(modelItem => item.Member.LastName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |

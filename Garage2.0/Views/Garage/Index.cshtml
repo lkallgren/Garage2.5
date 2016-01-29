@@ -1,106 +1,110 @@
 ﻿@model IEnumerable<Garage2._0.Models.Vehicle>
 
-@{
-    ViewBag.Title = "CLR Garage 2.5 Index";
-    int FreeSpaces = ViewBag.FreeSpaces;    
-}
 
-@if ((int)FreeSpaces == 0)
-{
-    <p style="padding-top:50px">
-        <input type="button" disabled="disabled" title="Create" value="Parkering plats är full" style="background-color:#ff0000; color:#fff" onclick=" location.href='@Url.Action("Create","Garage")' " />
 
-    </p>
-}
-else
-{
-    <p style="padding-top:50px">
-        <input type="button" title="Create" value="Parkera fordon" style="background-color:forestgreen; color:#fff" onclick=" location.href='@Url.Action("Create","Garage")'" />
 
-    </p>
-}
-        @using (Html.BeginForm("Index", "Garage", FormMethod.Get))
-        {
-            <p>
-                Sök efter registreringsnummer: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                <input type="submit" value="Sök" />
-            </p>
-        }
+    @{
+        ViewBag.Title = "CLR Garage 2.5 Index";
+        int FreeSpaces = ViewBag.FreeSpaces;
+    }
 
-@using (Html.BeginForm("Index", "Garage", FormMethod.Get))
-{
-    <p>
-        Total lediga platser: @FreeSpaces
-    </p>
-}
+    @if ((int)FreeSpaces == 0)
+    {
+        <p style="padding-top:50px">
+            <input type="button" disabled="disabled" title="Create" value="Parkering plats är full" style="background-color:#ff0000; color:#fff" onclick=" location.href='@Url.Action("Create","Garage")' " />
+
+        </p>
+    }
+    else
+    {
+        <p style="padding-top:50px">
+            <input type="button" title="Create" value="Parkera fordon" style="background-color:forestgreen; color:#fff" onclick=" location.href='@Url.Action("Create","Garage")' " />
+
+        </p>
+    }
+    @using (Html.BeginForm("Index", "Garage", FormMethod.Get))
+    {
+        <p>
+            Sök efter registreringsnummer: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Sök" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Index", "Garage", FormMethod.Get))
+    {
+        <p>
+            Total lediga platser: @FreeSpaces
+        </p>
+    }
 
     <table class="table">
         <tr>
-            <th>            
+            <th>
                 @Html.ActionLink("TypeName", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Colour)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Colour)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WheelCount)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WheelCount)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ParkingLot)
             </th>
             <th>
                 @Html.ActionLink("ParkTime", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            @*<th>
-                @Html.ActionLink("ParkTime", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-            </th>*@
+            <th>
+                @Html.ActionLink("Medlem", "Index", new { sortOrder = ViewBag.MemberSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
             <th></th>
         </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type.TypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationNumber)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Colour)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WheelCount)
-        </td>*@
-        <th>
-            @Html.DisplayFor(model => item.ParkingLot)
-        </th>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkTime)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ParkTime)
-        </td>*@
-        <td>
-            @Html.ActionLink("Ändra", "Edit", new { id=item.VehicleId }) |
-            @Html.ActionLink("Detaljer", "Details", new { id=item.VehicleId }) |
-            @Html.ActionLink("Hämta ut", "Delete", new { id=item.VehicleId })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type.TypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Colour)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WheelCount)
+                    </td>*@
+                <th>
+                    @Html.DisplayFor(model => item.ParkingLot)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.FirstName) @Html.DisplayFor(modelItem => item.Member.LastName)
+                </td>
+                <td>
+                    @Html.ActionLink("Ändra", "Edit", new { id = item.VehicleId }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.VehicleId }) |
+                    @Html.ActionLink("Hämta ut", "Delete", new { id = item.VehicleId })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
