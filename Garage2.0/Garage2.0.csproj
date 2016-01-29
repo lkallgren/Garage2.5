@@ -162,6 +162,7 @@
     <Compile Include="Controllers\GarageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\Vehicles2Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,6 +261,12 @@
     <Content Include="Views\Vehicles2\Details.cshtml" />
     <Content Include="Views\Vehicles2\Edit.cshtml" />
     <Content Include="Views\Vehicles2\Index.cshtml" />
+    <Content Include="Views\Garage\DetailsList.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

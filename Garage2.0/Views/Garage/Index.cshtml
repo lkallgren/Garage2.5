@@ -36,15 +36,15 @@ else
 
     <table class="table">
         <tr>
-            <th>
-                @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            <th>            
+                @Html.ActionLink("TypeName", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Colour)
-            </th>
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.Brand)
             </th>
@@ -60,20 +60,23 @@ else
             <th>
                 @Html.ActionLink("ParkTime", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
+            @*<th>
+                @Html.ActionLink("ParkTime", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>*@
             <th></th>
         </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Type) 
+            @Html.DisplayFor(modelItem => item.Type.TypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Colour)
-        </td>
+        </td>*@
         @*<td>
             @Html.DisplayFor(modelItem => item.Brand)
         </td>
@@ -89,6 +92,9 @@ else
         <td>
             @Html.DisplayFor(modelItem => item.ParkTime)
         </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ParkTime)
+        </td>*@
         <td>
             @Html.ActionLink("Ändra", "Edit", new { id=item.VehicleId }) |
             @Html.ActionLink("Detaljer", "Details", new { id=item.VehicleId }) |

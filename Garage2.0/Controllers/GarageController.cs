@@ -130,6 +130,14 @@ namespace Garage2._0.Controllers
             }
             ViewBag.FreeSpaces = TotalPlatser();
             return View(vehicle.ToList());
+          }
+
+
+        // GET: Vehicles2
+        public ActionResult DetailsList()
+        {
+            var vehicles = db.Vehicles.Include(v => v.Type);
+            return View(vehicles.ToList());
         }
 
         public ActionResult Kvitto(int? id)
