@@ -13,6 +13,8 @@ namespace Garage2._0.Models
         [Required]
         public int VehicleTypeId { get; set; }
         [Required]
+        public int MemberId { get; set; }
+        [Required]
         public string RegistrationNumber { get; set; }
         public string Colour { get; set; }
         public string Brand { get; set; } 

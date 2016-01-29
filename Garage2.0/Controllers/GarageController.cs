@@ -183,6 +183,7 @@ namespace Garage2._0.Controllers
         public ActionResult Create()
         {
             ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "TypeName");
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "FirstName");
             return View();
         }
 
@@ -191,7 +192,7 @@ namespace Garage2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleId,VehicleTypeId,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "VehicleId,VehicleTypeId,MemberId,RegistrationNumber,Colour,Brand,Model,WheelCount,ParkTime,ParkingLot")] Vehicle vehicle)
         {
             
             if ((ModelState.IsValid) && (NextFreeLot() != 0))

@@ -61,6 +61,7 @@ using System.Linq;
             var vehicles = new List<Vehicle> {
                 new Vehicle { 
                     VehicleTypeId = 1,
+                    MemberId = 1,
                     RegistrationNumber = "ABC 123",
                     Colour = "Orange",
                     Brand = "Volvo",
@@ -70,6 +71,7 @@ using System.Linq;
                     ParkingLot = 1},
                 new Vehicle { 
                     VehicleTypeId = 2,
+                    MemberId = 1,
                     RegistrationNumber = "CBS 123",
                     Colour = "Röd",
                     Brand = "Boeing",
@@ -79,6 +81,7 @@ using System.Linq;
                     ParkingLot = 2},
                 new Vehicle { 
                     VehicleTypeId = 3,
+                    MemberId = 2,
                     RegistrationNumber = "Lena III",
                     Colour = "Vit",
                     Brand = "Star",
@@ -88,7 +91,8 @@ using System.Linq;
                     ParkingLot = 3},
                 new Vehicle { 
                     VehicleTypeId = 4,
-                    RegistrationNumber = "TTT 723",
+                     MemberId = 3,
+                   RegistrationNumber = "TTT 723",
                     Colour = "Black",
                     Brand = "HD",
                     Model = "Road Runner XXL",
